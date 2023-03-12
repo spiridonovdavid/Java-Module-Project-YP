@@ -1,8 +1,8 @@
 public class ProductList {
 
-    String productName;
+    String productName = "";
     double productPrice;
-    String totalProductList;
+    String totalProductList = "";
 
     String addToProductList(String productName, double productPrice) {
         this.productName = productName;
