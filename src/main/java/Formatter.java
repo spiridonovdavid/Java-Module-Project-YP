@@ -1,9 +1,8 @@
 public class Formatter {
     double totalPrice;
-    int preLastDigit;
+
     public String ruble(double totalPrice) {
         this.totalPrice = (int)totalPrice;
-        this.preLastDigit = (int)this.totalPrice % 10;
 
         if((this.totalPrice % 100 >= 11) && (this.totalPrice % 100 <= 14)) {
             return " рублей";
