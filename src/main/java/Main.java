@@ -6,9 +6,9 @@ public class Main {
     public static void main(String[] args) {
 
         int guestInput;
-        ProductList ProductList = new ProductList();
-        Calculator Calculator = new Calculator();
-        Formatter Formatter = new Formatter();
+        ProductList productList = new ProductList();
+        Calculator calculator = new Calculator();
+        Formatter formatter = new Formatter();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -28,12 +28,12 @@ public class Main {
         }
         System.out.println("Счет необходимо разделить на " + guestInput + " человек.");
 
-        Calculator.countPerson = guestInput;
+        calculator.countPerson = guestInput;
         while(true) {
             System.out.println("Введите название товара или команду Завершить");
-            ProductList.productName = scanner.next();
+            productList.productName = scanner.next();
 
-            if (ProductList.productName.equalsIgnoreCase("Завершить")) {
+            if (productList.productName.equalsIgnoreCase("Завершить")) {
                 break;
             }
             System.out.println("Введите стоимость блюда");
@@ -42,31 +42,31 @@ public class Main {
                 scanner.next();
             }
 
-            ProductList.productPrice = scanner.nextDouble();
+            productList.productPrice = scanner.nextDouble();
 
-            while(ProductList.productPrice <= 0) {
+            while(productList.productPrice <= 0) {
                 System.out.println("Некорректная цена блюда, введите корректную цену");
                 while(!scanner.hasNextDouble()) {
                     System.out.println("Некорректный ввод цены, повторите попытку");
                     scanner.next();
                 }
-                ProductList.productPrice = scanner.nextDouble();
+                productList.productPrice = scanner.nextDouble();
             }
 
-            ProductList.totalProductList = ProductList.addToProductList(ProductList.productName, ProductList.productPrice);
-            Calculator.totalPrice = Calculator.totalPrice + ProductList.productPrice;
+            productList.totalProductList = productList.addToProductList(productList.productName, productList.productPrice);
+            calculator.totalPrice = calculator.totalPrice + productList.productPrice;
             System.out.println("Товар успешно добавлен в счет");
         }
 
-        if (Calculator.totalPrice <= 0) {
+        if (calculator.totalPrice <= 0) {
             System.out.println("Вы ничего не заказывали, платить не за что");
         } else {
 
-            System.out.println("Добавленные товары: \n" + ProductList.totalProductList);
+            System.out.println("Добавленные товары: \n" + productList.totalProductList);
             System.out.println(
                     "Каждый должен заплатить по "
-                    + Formatter.roundPrice(Calculator.calcPricePerPerson(Calculator.countPerson, Calculator.totalPrice))
-                    + Formatter.ruble(Calculator.calcPricePerPerson(Calculator.countPerson, Calculator.totalPrice))
+                    + formatter.roundPrice(calculator.calcPricePerPerson(calculator.countPerson, calculator.totalPrice))
+                    + formatter.ruble(calculator.calcPricePerPerson(calculator.countPerson, calculator.totalPrice))
             );
         }
         scanner.close();
